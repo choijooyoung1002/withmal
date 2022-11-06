@@ -1,0 +1,315 @@
+---
+import Menu from "/components/Menu.svelte";
+import DirectPage from "/components/DirectPage.svelte";
+
+interface Data {
+  title: string;
+  script: string;
+  img: string;
+  id: string;
+  no: number;
+}
+
+interface DataList extends Array<Data> {}
+
+let list: DataList = [
+  {
+    title: "title1",
+    script: "script1",
+    img: "img1",
+    id: "id1",
+    no: 1,
+  },
+  {
+    title: "title2",
+    script: "script2",
+    img: "img2",
+    id: "id2",
+    no: 2,
+  },
+  {
+    title: "title3",
+    script: "script3",
+    img: "img3",
+    id: "id3",
+    no: 3,
+  },
+];
+// simple initialization with an element
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-68CT0B26HZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-68CT0B26HZ");
+    </script>
+
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/overlayscrollbar/OverlayScrollbars.min.css"
+    />
+
+    <script type="text/javascript" src="/overlayscrollbar/common.js" defer
+    ></script>
+
+    <meta name="generator" content="{Astro.generator}" />
+    <title>Withmal</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        scroll-behavior: smooth;
+      }
+
+      li.accent,
+      li:hover {
+        border-bottom: 3px solid #3a4ca8 !important;
+        color: #3a4ca8 !important;
+        font-weight: 700 !important;
+      }
+      #intro {
+        height: 100vh;
+        font-family: "NanumSquareNeo", sans-serif;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: 2.3em;
+        font-weight: 900;
+      }
+
+      h3 {
+        font-weight: 200;
+        font-size: 1.5em;
+      }
+
+      article {
+        text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.8);
+        color: white;
+      }
+
+      .scroll-area {
+        scroll-snap-align: start;
+        height: 100vh;
+      }
+
+      .scroll-container {
+        overflow: auto;
+        scroll-snap-type: y mandatory;
+        height: 100vh;
+        scroll-behavior: smooth;
+      }
+
+      #wrapper {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #wrapper .scroll-area {
+        min-height: 100%;
+      }
+
+      img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        z-index: -1;
+        margin: 0px;
+      }
+
+      .scroll-downs {
+        position: absolute;
+        right: 0;
+        bottom: 50px;
+        left: 0;
+        margin: auto;
+
+        width: 34px;
+        height: 55px;
+      }
+      .mousey {
+        width: 3px;
+        padding: 10px 15px;
+        height: 35px;
+        border: 2px solid #fff;
+        border-radius: 25px;
+        opacity: 0.75;
+        box-sizing: content-box;
+      }
+      .scroller {
+        width: 3px;
+        height: 10px;
+        border-radius: 25%;
+        background-color: #fff;
+        animation-name: scroll;
+        animation-duration: 0.7s;
+        animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+        animation-iteration-count: infinite;
+      }
+      @keyframes scroll {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(10px);
+          opacity: 0;
+        }
+      }
+
+      .os-viewport {
+        scroll-snap-type: y mandatory !important;
+        scroll-snap-type: mandatory !important;
+        -ms-scroll-snap-type: mandatory !important;
+        -moz-scroll-snap-type: mandatory !important;
+        -webkit-scroll-snap-type: mandatory !important;
+        -webkit-scroll-snap-destination: 0% 0% !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      @font-face {
+        font-family: "NanumSquareNeo";
+        src: url("/fonts/NanumSquareNeo-Variable.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "ClimateCrisis";
+        src: url("/fonts/ClimateCrisisKRVF.woff2") format("woff2");
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        //The first argument are the elements to which the plugin shall be initialized
+        //The second argument has to be at least a empty object or a object with your desired options
+        OverlayScrollbars(document.querySelector(".scroll-container"), {
+          className: "os-theme-light",
+          callbacks: {
+            onScroll: function () {
+              setProgress();
+            },
+          },
+        });
+      });
+
+      function setProgress() {
+        const scroll = document.querySelector(".os-viewport");
+        let currY = scroll.scrollTop;
+        let totalY = scroll.scrollHeight - scroll.clientHeight;
+        let currPage = currY / totalY;
+        let aa = Math.round(
+          scale(
+            currPage,
+            0,
+            1,
+            0,
+            document.querySelectorAll(".scroll-area").length - 1
+          )
+        );
+        document.querySelector(".accent").classList.remove("accent");
+        document.querySelectorAll("li")[aa].classList.add("accent");
+      }
+
+      function scale(number, inMin, inMax, outMin, outMax) {
+        return (
+          ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <Menu
+      list={[
+        { id: "intro", name: "intro" },
+        { id: "1", name: "exhibited animal" },
+        { id: "2", name: "wildlife" },
+        { id: "3", name: "farm animal" },
+        { id: "4", name: "laboratory animal" },
+      ]}
+    />
+
+    <div class="scroll-container">
+      <div id="intro" class="scroll-area">
+        <article>
+          <h1>지속가능한 세상에서 동물과 공존한다는 것</h1>
+          <h3>인간중심주의에서 벗어나기</h3>
+          <div class="scroll-downs">
+            <div class="mousey">
+              <div class="scroller"></div>
+            </div>
+          </div>
+        </article>
+        <img src="bg.avif" alt="" />
+      </div>
+      <DirectPage
+        img="image2.png"
+        no="1"
+        title="전시동물 이야기"
+        id="1"
+        class="scroll-area"
+        ><h2>
+          이미 많은 동물들이 고통받고 있다.<br />
+          이제는 그들이 동물답게 살아갈 수 있도록 놓아주어야 할 때이다.
+        </h2>
+      </DirectPage>
+
+      <DirectPage
+        img="image3.png"
+        no="2"
+        title="야생동물 이야기"
+        id="2"
+        class="scroll-area"
+        ><h2>
+          사람들에 의해 무분별하게 파괴된 자연환경 속에서 야생동물들은
+          하루하루를 살아가고 있다. <br />
+          지구의 한 생명체로서 야생동물이 더 이상 고통받지 않도록 도와주어야 한다
+        </h2>
+      </DirectPage>
+      <DirectPage
+        img="image4.png"
+        no="3"
+        title="농장동물 이야기"
+        id="3"
+        class="scroll-area"
+        ><h2>
+          농장동물을 상품이 아닌 하나의 생명체로 바라보고 <br /> 스트레스와 불필요한
+          고통을 최소화하며 농장동물의 복지수준을 향상시켜야 한다.
+        </h2>
+      </DirectPage>
+      <DirectPage
+        img="image5.png"
+        no="4"
+        title="실험동물 이야기"
+        id="4"
+        class="scroll-area"
+        ><h2>
+          반세기가 넘도록 수많은 동물들이 동물실험으로 고통받아왔다.
+          <br />
+          이제 동물실험을 대체할 무언가를 찾아야 할 때이다.
+        </h2>
+      </DirectPage>
+    </div>
+  </body>
+</html>
