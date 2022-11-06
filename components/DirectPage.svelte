@@ -63,7 +63,7 @@
 
   button {
     all: unset;
-    border: 3px solid #000000bd;
+    border: 3px solid white;
     width: 180px;
     height: 40px;
     text-align: left;
