@@ -92,7 +92,10 @@ let list: DataList = [
 
       h1 {
         font-size: 2.3em;
-        font-weight: 900;
+        font-family: "ClimateCrisis";
+        animation-name: climate;
+        animation-duration: 5s;
+        animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
       }
 
       h3 {
@@ -184,6 +187,15 @@ let list: DataList = [
         }
       }
 
+      @keyframes climate {
+        0% {
+          font-variation-settings: "YEAR" 2050;
+        }
+        100% {
+          font-variation-settings: "YEAR" 1979;
+        }
+      }
+
       .os-viewport {
         scroll-snap-type: y mandatory !important;
         scroll-snap-type: mandatory !important;
@@ -202,12 +214,20 @@ let list: DataList = [
 
       @font-face {
         font-family: "NanumSquareNeo";
-        src: url("/fonts/NanumSquareNeo-Variable.woff2") format("woff2");
+        src: url("/fonts/NanumSquareNeo-Variable.woff2")
+          format("woff2-variations");
       }
 
       @font-face {
         font-family: "ClimateCrisis";
-        src: url("/fonts/ClimateCrisisKRVF.woff2") format("woff2");
+        src: url("/fonts/ClimateCrisisKRVF.subset.woff2")
+          format("woff2-variations");
+      }
+
+      @font-face {
+        font-family: "SUIT";
+        font-weight: 100 900;
+        src: url("./SUIT-Variable.woff2") format("woff2-variations");
       }
     </style>
 
