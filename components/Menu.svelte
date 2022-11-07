@@ -63,7 +63,6 @@
 
   ul {
     display: flex;
-    justify-content: space-evenly;
     height: 100%;
 
     align-items: center;
@@ -78,6 +77,8 @@
     font-family: "SUIT", sans-serif;
     transition: all 0.2s;
     text-align: center;
+    margin-left: 1em;
+    line-height: 12px;
   }
 
   a {
@@ -87,7 +88,6 @@
 
   #menu {
     height: 100%;
-    width: 30%;
   }
 
   nav {
