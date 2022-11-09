@@ -21,7 +21,6 @@
   }
   img {
     width: 100%;
-    height: 100vh;
     height: 100dvh;
 
     object-fit: cover;
@@ -32,7 +31,6 @@
   }
   section {
     scroll-snap-align: start;
-    height: 100vh;
     height: 100dvh;
 
     font-family: "SUIT", sans-serif;
