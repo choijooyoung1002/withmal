@@ -22,7 +22,7 @@
   img {
     width: 100%;
     height: 100dvh;
-
+    height:100vh;
     object-fit: cover;
     position: absolute;
     z-index: -1;
@@ -31,7 +31,7 @@
   }
   section {
     scroll-snap-align: start;
-    height: 100dvh;
+    height: 100vh;
 
     font-family: "SUIT", sans-serif;
     display: flex;
