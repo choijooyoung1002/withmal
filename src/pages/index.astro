@@ -67,8 +67,11 @@ let list: DataList = [
     ></script>
 
     <script is:inline>
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
+      const setVh = () => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
+      };
+      window.addEventListener('resize', setVh);
+      setVh();
     </script>
 
     <meta name="generator" content="{Astro.generator}" />
@@ -165,10 +168,10 @@ let list: DataList = [
         bottom: 50px;
         left: 0;
         margin: auto;
-
         width: 34px;
         height: 55px;
       }
+
       .mousey {
         width: 3px;
         padding: 10px 15px;
@@ -178,6 +181,7 @@ let list: DataList = [
         opacity: 0.75;
         box-sizing: content-box;
       }
+      
       .scroller {
         width: 3px;
         height: 10px;
@@ -188,6 +192,7 @@ let list: DataList = [
         animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
         animation-iteration-count: infinite;
       }
+
       @keyframes scroll {
         0% {
           opacity: 0;
@@ -244,6 +249,7 @@ let list: DataList = [
         font-weight: 100 900;
         src: url("/fonts/SUIT-Variable.woff2") format("woff2-variations");
       }
+
     </style>
 
     <script>

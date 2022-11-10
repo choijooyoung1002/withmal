@@ -19,6 +19,7 @@
     scroll-behavior: smooth;
     color: white;
   }
+
   img {
     width: 100%;
     height: 100dvh;
@@ -29,10 +30,11 @@
     background: gray;
     margin: 0px;
   }
+
   section {
     scroll-snap-align: start;
+    height: 100dvh;
     height: 100vh;
-
     font-family: "SUIT", sans-serif;
     display: flex;
     align-items: end;
